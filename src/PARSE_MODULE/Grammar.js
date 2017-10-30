@@ -4,8 +4,16 @@
 
 
 class Grammar_Word {
-  constructor () {
+  constructor (item) {
+    this.word = item;
+  }
 
+  getType(){
+    return this.word[0];
+  }
+
+  getValue(){
+    return this.word[1];
   }
 }
 

@@ -5,6 +5,7 @@
 
 import Env from './DEFAULT_MODULE/default_env';
 import Opers from './DEFAULT_MODULE/default_operators';
+import Parse_Content from './PARSE_MODULE/parse';
 
 
 function setupDefaultEnv (env) {
@@ -17,4 +18,18 @@ function setupDefaultEnv (env) {
 function init(){
   let Global_Env = new Env();
   setupDefaultEnv(Global_Env);
+
 }
+
+
+
+function test(){
+  let testCase = '(+ 5 3)';
+  init();
+	let parser = new Parse_Content(testCase);
+	let words = parser.parseToWords();
+
+	console.log(words);
+}
+
+test();
