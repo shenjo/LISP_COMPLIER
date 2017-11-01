@@ -3,6 +3,9 @@
     "global": "^4.3.2",
     "webpack": "^3.8.1"
   },
+  "scripts": {
+    "watch": "webpack"
+  },
   "name": "LISP_COMPLIER",
   "version": "1.0.0",
   "main": "index.js",

@@ -22,14 +22,15 @@ function init(){
 }
 
 
-
 function test(){
+  debugger;
   let testCase = '(+ 5 3)';
   init();
-	let parser = new Parse_Content(testCase);
-	let words = parser.parseToWords();
-
-	console.log(words);
+  let parser = new Parse_Content(testCase);
+  let grammarTrees = parser.parse();
+  console.log(grammarTrees);
+  debugger;
+  console.log(1)
 }
 
 test();

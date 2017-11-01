@@ -8,18 +8,25 @@ class Grammar_Word {
     this.word = item;
   }
 
-  getType(){
+  getType () {
     return this.word[0];
   }
 
-  getValue(){
+  getValue () {
     return this.word[1];
   }
 }
 
 class Grammar_Tree {
   constructor () {
+    this.child = null;
+  }
 
+  append (child) {
+    if (this.child === null) {
+      this.child = [];
+    }
+    this.child.push(child);
   }
 }
 
