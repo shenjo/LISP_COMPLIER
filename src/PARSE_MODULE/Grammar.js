@@ -28,6 +28,14 @@ class Grammar_Tree {
     }
     this.child.push(child);
   }
+
+  getLength(){
+    return this.child.length;
+  }
+
+  getCallableChild(){
+    return this.child[0];
+  }
 }
 
 export default {

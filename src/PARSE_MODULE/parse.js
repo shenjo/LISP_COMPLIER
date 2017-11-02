@@ -3,8 +3,7 @@
  */
 
 import Grammar from './Grammar';
-import TYPES from 'constants';
-
+import TYPES from './constants';
 let Grammar_Word = Grammar.Grammar_Word;
 let Grammar_Tree = Grammar.Grammar_Tree;
 class Parse_Content {
@@ -33,7 +32,7 @@ class Parse_Content {
     let trees = [], start = 0;
     while (start < length) {
       if (words[start].getType() === TYPES.LEFT_BRACKETS_TYPE) {
-        let result = Parse_Content.generateOneTree(words, start++);
+        let result = Parse_Content.generateOneTree(words, ++start);
         trees.push(result.tree);
         start = result.start;
       } else {
@@ -47,15 +46,15 @@ class Parse_Content {
     let tree = new Grammar_Tree();
     while (words[index].getType() !== TYPES.RIGHT_BRACKETS_TYPE) {
       if (words[index].getType() === TYPES.LEFT_BRACKETS_TYPE) {
-        let result = Parse_Content.generateOneTree(words.index++);
+        let result = Parse_Content.generateOneTree(words, ++index);
         tree.append(result.tree);
         index = result.index;
       } else {
         tree.append(words[index]);
         index++;
       }
-
     }
+    index++;
     return { tree, index };
   }
 
@@ -116,8 +115,3 @@ class Parse_Content {
 }
 
 export default Parse_Content;
-
-
-// let test = new Parse_Content('(+ 5 3)');
-//
-// test.parse();

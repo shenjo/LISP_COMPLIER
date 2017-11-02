@@ -6,6 +6,7 @@
 import Env from './DEFAULT_MODULE/default_env';
 import Opers from './DEFAULT_MODULE/default_operators';
 import Parse_Content from './PARSE_MODULE/parse';
+import execute from './EXECUTE_MODULE/excetutor';
 
 
 function setupDefaultEnv (env) {
@@ -18,19 +19,17 @@ function setupDefaultEnv (env) {
 function init(){
   let Global_Env = new Env();
   setupDefaultEnv(Global_Env);
-
+  return Global_Env;
 }
 
 
 function test(){
   debugger;
   let testCase = '(+ 5 3)';
-  init();
+  let Global_Env = init();
   let parser = new Parse_Content(testCase);
   let grammarTrees = parser.parse();
-  console.log(grammarTrees);
-  debugger;
-  console.log(1)
+  return execute(grammarTrees,Global_Env)
 }
 
 test();

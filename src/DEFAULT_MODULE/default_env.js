@@ -22,6 +22,10 @@ class ENV {
     this.scopes[bind] = meaning;
   }
 
+  getScope(){
+    return this.scopes;
+  }
+
 }
 
 
