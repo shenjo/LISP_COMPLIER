@@ -78,7 +78,7 @@ class Parse_Content {
           if (Parse_Content.isWhiteSpace(char) || Parse_Content.isLeftBrackets(char) || Parse_Content.isRightBrackets(char)) {
             if (item.startsWith('\'')) {
               return new Grammar_Word([TYPES.STRING, item]);
-            } else if (parseFloat(item) instanceof Number) {
+            } else if (!isNaN(item)) {
               return new Grammar_Word([TYPES.NUMBER, parseFloat(item)]);
             } else {
               return new Grammar_Word([TYPES.VARIABLE, item]);

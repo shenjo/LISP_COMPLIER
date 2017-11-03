@@ -24,12 +24,13 @@ function init(){
 
 
 function test(){
-  debugger;
-  let testCase = '(+ 5 3)';
+  let testCase = '(+ 5 3 (+ 4 9) (/ 4 2) (- 4 2))';
   let Global_Env = init();
   let parser = new Parse_Content(testCase);
   let grammarTrees = parser.parse();
-  return execute(grammarTrees,Global_Env)
+  for(let tree of grammarTrees){
+    console.log(execute(tree,Global_Env));
+  }
 }
 
 test();

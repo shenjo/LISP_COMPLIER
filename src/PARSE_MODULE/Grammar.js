@@ -33,6 +33,10 @@ class Grammar_Tree {
     return this.child.length;
   }
 
+  findChild(index){
+    return this.child[index];
+  }
+
   getCallableChild(){
     return this.child[0];
   }

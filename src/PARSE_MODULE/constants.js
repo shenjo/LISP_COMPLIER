@@ -11,6 +11,7 @@ const STRING = 'string';
 const VARIABLE = 'variable';
 const NUMBER = 'number';
 const END = 'end';
+const FUNCTION = 'function';
 
 export default {
   LEFT_BRACKETS_TYPE,
@@ -20,5 +21,6 @@ export default {
   STRING,
   VARIABLE,
   NUMBER,
-  END
+  END,
+  FUNCTION
 }
