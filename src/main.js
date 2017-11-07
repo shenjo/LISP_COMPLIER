@@ -9,28 +9,48 @@ import Parse_Content from './PARSE_MODULE/parse';
 import execute from './EXECUTE_MODULE/excetutor';
 
 
-function setupDefaultEnv (env) {
-  env.register('+',Opers.addition);
-  env.register('-',Opers.subtraction);
-  env.register('*',Opers.multiplication);
-  env.register('/',Opers.division);
+function setupDefaultEnv(env) {
+	env.register('+', Opers.addition);
+	env.register('-', Opers.subtraction);
+	env.register('*', Opers.multiplication);
+	env.register('/', Opers.division);
 }
 
-function init(){
-  let Global_Env = new Env();
-  setupDefaultEnv(Global_Env);
-  return Global_Env;
+function init() {
+	let Global_Env = new Env();
+	setupDefaultEnv(Global_Env);
+	return Global_Env;
 }
 
 
-function test(){
-  let testCase = '(+ 5 3 (+ 4 9) (/ 4 2) (- 4 2))';
-  let Global_Env = init();
-  let parser = new Parse_Content(testCase);
-  let grammarTrees = parser.parse();
-  for(let tree of grammarTrees){
-    console.log(execute(tree,Global_Env));
-  }
+function myEval(content) {
+	let Global_Env = init(),result;
+	let parser = new Parse_Content(content);
+	let grammarTrees = parser.parse();
+	for (let tree of grammarTrees) {
+		result = execute(tree, Global_Env);
+		console.log(result);
+	}
+	return result;
 }
 
-test();
+const app = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello Vue!',
+			result: ''
+		},
+		methods: {
+			translate: function () {
+				this.result = '';
+				try {
+					this.result = myEval(this.message);
+				} catch (err) {
+					console.log(err);
+				}
+			}
+		}
+	})
+;
+
+
