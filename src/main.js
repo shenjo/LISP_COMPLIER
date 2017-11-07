@@ -38,15 +38,17 @@ const app = new Vue({
 		el: '#app',
 		data: {
 			message: 'Hello Vue!',
-			result: ''
+			result: '',
+			errorMessage:''
 		},
 		methods: {
 			translate: function () {
 				this.result = '';
+				this.errorMessage = '';
 				try {
 					this.result = myEval(this.message);
 				} catch (err) {
-					console.log(err);
+					this.errorMessage = err.message;
 				}
 			}
 		}

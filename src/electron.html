@@ -13,6 +13,7 @@
         <button @click="translate">translate</button>
     </label>
     <div>the answer is :{{result}}</div>
+    <div :if="errorMessage">{{errorMessage}}</div>
 </div>
 
 <script src="../dist/lisper.js"></script>

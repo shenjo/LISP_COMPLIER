@@ -36,7 +36,7 @@ class Parse_Content {
         trees.push(result.tree);
         start = result.start;
       } else {
-        console.log('unexpected.');
+       throw new Error(`expression should start with (`);
       }
     }
     return trees;
@@ -88,6 +88,7 @@ class Parse_Content {
             this.index++;
           }
         }
+        throw new Error('expression should be end Of )');
 
       }
     }
