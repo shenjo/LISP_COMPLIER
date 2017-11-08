@@ -4,7 +4,7 @@
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "watch": "webpack"
+    "dev": "webpack && electron ."
   },
   "name": "LISP_COMPLIER",
   "version": "1.0.0",
