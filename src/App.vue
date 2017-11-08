@@ -1,11 +1,37 @@
 <template>
-    <div id="app">
-        <label>
-            <input type="text" placeholder="input your statement" v-model="message"/>
-            <button @click="translate">translate</button>
-        </label>
-        <div>the answer is :{{result}}</div>
-        <div :if="errorMessage">{{errorMessage}}</div>
+    <div id="app" class="full_height">
+
+        <el-container class="full_height">
+            <el-header>Lisp compiler</el-header>
+            <el-container class="full_height">
+                <el-aside width="200px">
+                    <el-input v-model="message" placeholder="input your statement"></el-input>
+                </el-aside>
+                <el-container>
+                    <el-main>
+                        <el-button type="primary" @click="translate">translate</el-button>
+                    </el-main>
+                    <el-footer>
+                        <div>the answer is :{{result}}</div>
+                        <div :if="errorMessage">{{errorMessage}}</div>
+                    </el-footer>
+                </el-container>
+            </el-container>
+        </el-container>
+        <!--<el-row :gutter="20">-->
+            <!--<el-col :span="12">-->
+                <!--<div class="grid-content bg-purple">-->
+                    <!--<el-input v-model="message" placeholder="input your statement"></el-input>-->
+                <!--</div>-->
+            <!--</el-col>-->
+            <!--<el-col :span="12">-->
+                <!--<div class="grid-content bg-purple">-->
+                    <!--<button @click="translate">translate</button>-->
+                    <!--<div>the answer is :{{result}}</div>-->
+                    <!--<div :if="errorMessage">{{errorMessage}}</div>-->
+                <!--</div>-->
+            <!--</el-col>-->
+        <!--</el-row>-->
     </div>
 </template>
 
@@ -43,5 +69,14 @@
         color: #2c3e50;
         top: 0;
         left: 0;
+    }
+     .el-header {
+         background-color: #B3C0D1;
+         color: #333;
+         line-height: 60px;
+     }
+
+    .el-aside {
+        color: #333;
     }
 </style>
