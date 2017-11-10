@@ -9,7 +9,7 @@ const Grammar_Word = Grammar.Grammar_Word;
 
 
 function execute (grammar, env) {
-  var getFunctionArguments = function(grammarTree) {
+  const getFunctionArguments = function(grammarTree) {
     let result = [];
     for (let i = 1, length = grammarTree.getLength(); i < length; i++) {
       let itemValue = execute(grammarTree.findChild(i), env);
@@ -19,17 +19,27 @@ function execute (grammar, env) {
   };
   if (grammar instanceof Grammar_Tree) {
     let oper = grammar.getCallableChild();
-    let func = env.find(oper.getValue());
-    if (typeof func === TYPES.FUNCTION) {
-      if (oper.getValue() === TYPES.DEFINE) {
-        const name = grammar.findChild(1).getValue();
-        const value = execute(grammar.findChild(2),env);
-        return func([name, value], env);
-      } else {
-        return func(getFunctionArguments(grammar), env);
-      }
 
+    const operType = oper.getValue();
+    let func = env.find(operType);
+    if (typeof func !== TYPES.FUNCTION) {
+      throw new Error(`${operType} is not a function.`);
     }
+    if (operType === TYPES.DEFINE) {
+      const name = grammar.findChild(1).getValue();
+      const value = execute(grammar.findChild(2), env);
+      return func([name, value], env);
+    } else if (operType === TYPES.IF) {
+      const condition = execute(grammar.findChild(1), env);
+      return execute(func([condition, grammar.findChild(2), grammar.findChild(3)], env), env);
+    } else if (operType === TYPES.GREATER || operType === TYPES.EQUAL_GREATER || operType === TYPES.LESS || operType === TYPES.EQUAL_LESS) {
+      const leftValue = execute(grammar.findChild(1), env);
+      const rightValue = execute(grammar.findChild(2), env);
+      return func([leftValue, rightValue], env);
+    } else {
+      return func(getFunctionArguments(grammar), env);
+    }
+
   } else if (grammar instanceof Grammar_Word) {
     if (grammar.getType() === TYPES.NUMBER) {
       return grammar.getValue();

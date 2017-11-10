@@ -13,7 +13,12 @@ function setupDefaultEnv (env) {
   env.register('-', Opers.subtraction);
   env.register('*', Opers.multiplication);
   env.register('/', Opers.division);
-  env.register('define',Opers.define)
+  env.register('define',Opers.define);
+  env.register('if',Opers.myIf);
+  env.register('>',Opers.my_greater);
+  env.register('>=',Opers.my_equal_greate);
+  env.register('<',Opers.my_less);
+  env.register('<=',Opers.my_equal_less);
 }
 
 function init () {

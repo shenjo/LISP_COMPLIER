@@ -64,11 +64,49 @@ function define (args, env) {
   return `${name} defined.`;
 }
 
+function myIf (args, env) {
+  return args[0] ? args[1] : args[2];
+
+}
+
+function my_greater (args, env) {
+  if (isNaN(args[0]) || isNaN(args[1])) {
+    throw new Error(`> cannot apply to non_number.`)
+  }
+  return args[0] > args[1];
+}
+
+function my_less (args, env) {
+  if (isNaN(args[0]) || isNaN(args[1])) {
+    throw new Error(`< cannot apply to non_number.`)
+  }
+  return args[0] < args[1];
+}
+
+function my_equal_greate (args, env) {
+  if (isNaN(args[0]) || isNaN(args[1])) {
+    throw new Error(`>= cannot apply to non_number.`)
+  }
+  return args[0] >= args[1];
+}
+
+function my_equal_less (args, env) {
+  if (isNaN(args[0]) || isNaN(args[1])) {
+    throw new Error(`<= cannot apply to non_number.`)
+  }
+  return args[0] <= args[1];
+}
+
 
 export default {
   addition,
   subtraction,
   multiplication,
   division,
-  define
+  define,
+  myIf,
+  my_greater,
+  my_less,
+  my_equal_greate,
+  my_equal_less
 }

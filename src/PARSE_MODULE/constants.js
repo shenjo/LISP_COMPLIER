@@ -13,6 +13,11 @@ const NUMBER = 'number';
 const END = 'end';
 const FUNCTION = 'function';
 const DEFINE = 'define';
+const IF = 'if';
+const GREATER = '>';
+const EQUAL_GREATER = '>=';
+const LESS = '<';
+const EQUAL_LESS = '<=';
 
 export default {
   LEFT_BRACKETS_TYPE,
@@ -24,5 +29,10 @@ export default {
   NUMBER,
   END,
   FUNCTION,
-  DEFINE
+  DEFINE,
+  IF,
+  GREATER,
+  EQUAL_GREATER,
+  LESS,
+  EQUAL_LESS
 }
