@@ -21,11 +21,20 @@ function execute (grammar, env) {
     let oper = grammar.getCallableChild();
     let func = env.find(oper.getValue());
     if (typeof func === TYPES.FUNCTION) {
-      return func(getFunctionArguments(grammar), env);
+      if (oper.getValue() === TYPES.DEFINE) {
+        const name = grammar.findChild(1).getValue();
+        const value = execute(grammar.findChild(2),env);
+        return func([name, value], env);
+      } else {
+        return func(getFunctionArguments(grammar), env);
+      }
+
     }
   } else if (grammar instanceof Grammar_Word) {
     if (grammar.getType() === TYPES.NUMBER) {
       return grammar.getValue();
+    } else if (grammar.getType() === TYPES.VARIABLE) {
+      return env.find(grammar.getValue());
     }
   }
 }

@@ -18,20 +18,6 @@
                 </el-container>
             </el-container>
         </el-container>
-        <!--<el-row :gutter="20">-->
-            <!--<el-col :span="12">-->
-                <!--<div class="grid-content bg-purple">-->
-                    <!--<el-input v-model="message" placeholder="input your statement"></el-input>-->
-                <!--</div>-->
-            <!--</el-col>-->
-            <!--<el-col :span="12">-->
-                <!--<div class="grid-content bg-purple">-->
-                    <!--<button @click="translate">translate</button>-->
-                    <!--<div>the answer is :{{result}}</div>-->
-                    <!--<div :if="errorMessage">{{errorMessage}}</div>-->
-                <!--</div>-->
-            <!--</el-col>-->
-        <!--</el-row>-->
     </div>
 </template>
 
@@ -41,7 +27,7 @@
     name: 'app',
     data() {
       return {
-        message: '(+ 2 3)',
+        message: '(define a (+ 2 3))(+ a 3)',
         result: '',
         errorMessage: ''
       }

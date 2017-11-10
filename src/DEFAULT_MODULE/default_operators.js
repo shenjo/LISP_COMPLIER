@@ -2,7 +2,7 @@
  * Created by SHENJO on 10/30/2017.
  */
 
-function addition (nums,env) {
+function addition (nums, env) {
   let sum = 0;
   for (let val of nums) {
     sum += parseFloat(val);
@@ -13,7 +13,7 @@ function addition (nums,env) {
   return sum;
 }
 
-function subtraction (subs,env) {
+function subtraction (subs, env) {
   let result = parseFloat(subs[0]) * 2;
   for (let val of subs) {
     result -= parseFloat(val);
@@ -24,7 +24,7 @@ function subtraction (subs,env) {
   return result;
 }
 
-function multiplication (muls,env) {
+function multiplication (muls, env) {
   let result = 1;
   for (let val of muls) {
     result *= parseFloat(val);
@@ -35,7 +35,7 @@ function multiplication (muls,env) {
   return result;
 }
 
-function division (divs,env) {
+function division (divs, env) {
   let length = divs.length;
   if (length !== 2) {
     throw new Error('division can only receive two args.');
@@ -45,7 +45,7 @@ function division (divs,env) {
   if (divisor === 0) {
     throw new Error('divisor cannot be 0.');
   }
-  let result= dividend / divisor;
+  let result = dividend / divisor;
   if (isNaN(result)) {
     throw new Error('division cannot receive non-number.');
   }
@@ -53,10 +53,22 @@ function division (divs,env) {
 
 }
 
+function define (args, env) {
+  let length = args.length;
+  if (length !== 2) {
+    throw new Error('define can only receive two args.');
+  }
+  let name = args[0];
+  let value = args[1];
+  env.register(name, value);
+  return `${name} defined.`;
+}
+
 
 export default {
   addition,
   subtraction,
   multiplication,
-  division
+  division,
+  define
 }

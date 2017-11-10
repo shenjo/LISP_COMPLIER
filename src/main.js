@@ -13,6 +13,7 @@ function setupDefaultEnv (env) {
   env.register('-', Opers.subtraction);
   env.register('*', Opers.multiplication);
   env.register('/', Opers.division);
+  env.register('define',Opers.define)
 }
 
 function init () {

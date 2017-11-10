@@ -34,7 +34,7 @@ class Parse_Content {
       if (words[start].getType() === TYPES.LEFT_BRACKETS_TYPE) {
         let result = Parse_Content.generateOneTree(words, ++start);
         trees.push(result.tree);
-        start = result.start;
+        start = result.index;
       } else {
        throw new Error(`expression should start with (`);
       }
@@ -49,7 +49,7 @@ class Parse_Content {
         let result = Parse_Content.generateOneTree(words, ++index);
         tree.append(result.tree);
         index = result.index;
-      } else {
+      }else {
         tree.append(words[index]);
         index++;
       }
