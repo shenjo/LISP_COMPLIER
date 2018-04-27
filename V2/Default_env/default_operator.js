@@ -1,3 +1,5 @@
+const {MyFunction} = require('./MyFunction');
+
 const add = (...arg) => {
   if (!arg || arg.length < 2) {
     throw new Error('+必须还有至少两个参数');
@@ -18,7 +20,6 @@ const subtract = (...arg) => {
     return previousValue - currentValue;
   });
 };
-
 
 const multi = (...arg) => {
   if (!arg || arg.length < 2) {
@@ -44,6 +45,22 @@ const divide = (...arg) => {
   });
 };
 
+const lambda = args => {
+  if (!args || args.length < 2) {
+    throw new Error('lambda必须还有至少两个参数');
+  }
+  return new MyFunction(args[0], args[1]);
+};
+
+const define = (args, env) => {
+  if (!args || args.length < 2) {
+    throw new Error('lambda必须还有至少两个参数');
+  }
+  let key = args[0];
+  let val = args[1];
+  env.register(key, val);
+};
+
 module.exports = {
-  add,subtract,multi,divide
-}
+  add, subtract, multi, divide, lambda, define
+};

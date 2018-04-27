@@ -8,17 +8,25 @@ const isRightBrackets = node => {
   return node.getType() === ALL_CONSTANTS.RIGHT_BRACKETS_TYPE;
 };
 
-const isNumber = node=>{
+const isNumber = node => {
   return node.getType() === ALL_CONSTANTS.NUMBER_TYPE;
 };
 
-const isString = node =>{
+const isString = node => {
   return node.getType() === ALL_CONSTANTS.STRING_TYPEl
 };
 
 const isVariable = node => {
   return node.getType() === ALL_CONSTANTS.VARIABLE_TYPE;
-}
+};
+
+const isLambdaExpression = node => {
+  return node && typeof node.getVal === 'function' && node.getVal() === 'lambda';
+};
+
+const isDefineExpression = node => {
+  return node && typeof node.getVal === 'function' && node.getVal() === 'define';
+};
 
 const checkOverFlow = (currentIndex, length, msg = 'unknown error') => {
   if (currentIndex >= length) {
@@ -33,5 +41,7 @@ module.exports = {
   checkOverFlow,
   isNumber,
   isString,
-  isVariable
+  isVariable,
+  isLambdaExpression,
+  isDefineExpression
 };

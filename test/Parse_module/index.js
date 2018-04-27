@@ -43,7 +43,7 @@ test('convertWordToNode 单词转化为节点', t => {
   word = 'abc';
   test(convertWordToNode(word), ALL_CONSTANTS.VARIABLE_TYPE, word);
   word = '123';
-  test(convertWordToNode(word), ALL_CONSTANTS.NUMBER_TYPE, word);
+  test(convertWordToNode(word), ALL_CONSTANTS.NUMBER_TYPE, 123);
   word = '(';
   test(convertWordToNode(word), ALL_CONSTANTS.LEFT_BRACKETS_TYPE, word);
   word = ')';

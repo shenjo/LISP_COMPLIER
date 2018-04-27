@@ -1,7 +1,7 @@
 class Env {
-  constructor() {
+  constructor(env) {
     this.$scope = {
-      father: null
+      father: env || null
     }
   }
 
@@ -19,12 +19,8 @@ class Env {
     this.$scope[key] = val;
   }
 
-  setSuperEnv(env) {
-    this.$scope.father = env;
-  }
-
 }
 
 module.exports = {
   Env
-}
+};
