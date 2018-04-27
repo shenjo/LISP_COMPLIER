@@ -1,6 +1,6 @@
 const {Node, Tree} = require('../Comon/dataStructure');
 const {Env} = require('../Default_env');
-const {isNumber, isString, isVariable, isLambdaExpression, isDefineExpression} = require('../Comon/util');
+const {isNumber, isString, isVariable, isLambdaExpression, isDefineExpression, isMyIfExpression, isCompareExpression} = require('../Comon/util');
 const {MyFunction} = require('../Default_env/MyFunction');
 
 function evalSystem(expression, env) {
@@ -31,6 +31,13 @@ function executeGrammarTree(grammarTree, env) {
       return operator.call(null, [grammarTree.children[1], grammarTree.children[2]], env)
     } else if (isDefineExpression(grammarTree.children[0])) {
       return operator.call(null, [grammarTree.children[1].getVal(), evalSystem(grammarTree.children[2], env)], env);
+    } else if (isMyIfExpression(grammarTree.children[0])) {
+      let condition = evalSystem(grammarTree.children[1], env);
+      let trueExpress = grammarTree.children[2];
+      let elseExpress = grammarTree.children[3];
+      return evalSystem(operator.call(null, condition, trueExpress, elseExpress),env);
+    } else if (isCompareExpression(grammarTree.children[0])) {
+      return operator.call(null, evalSystem(grammarTree.children[1], env), evalSystem(grammarTree.children[2], env))
     } else if (operator instanceof MyFunction) {
       let funcArgs = grammarTree.children.slice(1).map(item => evalSystem(item, env));
       return evalMyFunction(operator, funcArgs, env);

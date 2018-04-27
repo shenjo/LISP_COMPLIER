@@ -61,6 +61,46 @@ const define = (args, env) => {
   env.register(key, val);
 };
 
+const myIf = (...args) => {
+  if (!args || args.length !== 3) {
+    throw new Error('if必须是三个参数(condition,trueExpression,falseExpression)');
+  }
+  let condition = args[0];
+  if (condition) {
+    return args[1];
+  } else {
+    return args[2];
+  }
+};
+
+const greaterThen = (...args) => {
+  if (!args || args.length !== 2) {
+    throw new Error(`>必须是2个参数`);
+  }
+  return args[0] > args[1];
+};
+
+const greaterAndEqualsThen = (...args) => {
+  if (!args || args.length !== 2) {
+    throw new Error(`>=必须是2个参数`);
+  }
+  return args[0] >= args[1];
+};
+
+const lessThen = (...args) => {
+  if (!args || args.length !== 2) {
+    throw new Error(`<必须是2个参数`);
+  }
+  return args[0] < args[1];
+};
+
+const lessAndEqualsThen = (...args) => {
+  if (!args || args.length !== 2) {
+    throw new Error(`<=必须是2个参数`);
+  }
+  return args[0] <= args[1];
+};
+
 module.exports = {
-  add, subtract, multi, divide, lambda, define
+  add, subtract, multi, divide, lambda, define, myIf, greaterAndEqualsThen, greaterThen, lessAndEqualsThen, lessThen
 };

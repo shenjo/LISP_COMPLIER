@@ -28,6 +28,14 @@ const isDefineExpression = node => {
   return node && typeof node.getVal === 'function' && node.getVal() === 'define';
 };
 
+const isMyIfExpression = node => {
+  return node && typeof node.getVal === 'function' && node.getVal() === 'if';
+};
+
+const isCompareExpression = node => {
+  return node && typeof node.getVal === 'function' && ['>','>=','<','<='].indexOf(node.getVal()) !== -1;
+}
+
 const checkOverFlow = (currentIndex, length, msg = 'unknown error') => {
   if (currentIndex >= length) {
     throw new Error(msg);
@@ -43,5 +51,7 @@ module.exports = {
   isString,
   isVariable,
   isLambdaExpression,
-  isDefineExpression
+  isDefineExpression,
+  isMyIfExpression,
+  isCompareExpression
 };

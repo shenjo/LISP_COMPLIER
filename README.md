@@ -13,17 +13,20 @@ $ npm run dev
 currently only has a little function.
 
 ```ecmascript 6
-function setupDefaultEnv (env) {
-  env.register('+', Opers.addition);
-  env.register('-', Opers.subtraction);
-  env.register('*', Opers.multiplication);
-  env.register('/', Opers.division);
-  env.register('define',Opers.define);
-  env.register('if',Opers.myIf);
-  env.register('>',Opers.my_greater);
-  env.register('>=',Opers.my_equal_greate);
-  env.register('<',Opers.my_less);
-  env.register('<=',Opers.my_equal_less);
+function initDefaultEnv() {
+  let env = new Env();
+  env.register('+', operaters.add);
+  env.register('-', operaters.subtract);
+  env.register('*', operaters.multi);
+  env.register('/', operaters.divide);
+  env.register('lambda', operaters.lambda);
+  env.register('define', operaters.define);
+  env.register('if', operaters.myIf);
+  env.register('>', operaters.greaterThen);
+  env.register('>=', operaters.greaterAndEqualsThen);
+  env.register('<', operaters.lessThen);
+  env.register('<=', operaters.lessAndEqualsThen);
+  return env;
 }
 ```
 

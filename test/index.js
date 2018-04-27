@@ -46,3 +46,27 @@ test('define表达式求值', t => {
 test('define 与lambda结合', t => {
   t.true(myEval('(define a (lambda (x y) ( * x y))) (a 8 9)') === 72)
 });
+
+test('比较运算符测试', t => {
+  let result = myEval('(> 3 2)');
+  t.true(typeof  result === 'boolean' && result);
+  result = myEval('(> 3 4)');
+  t.true(typeof  result === 'boolean' && !result);
+  result = myEval('(>= 3 3)');
+  t.true(typeof  result === 'boolean' && result);
+  result = myEval('(>= 3 4)');
+  t.true(typeof  result === 'boolean' && !result);
+  result = myEval('(< 3 4)');
+  t.true(typeof  result === 'boolean' && result);
+  result = myEval('(<= 3 4)');
+  t.true(typeof  result === 'boolean' && result)
+});
+
+test('if表达式测试', t => {
+  t.true(myEval('(if (> 3 4) (5) (6) )') === 6);
+  t.true(myEval('(if (> 4 3) (5) (6) )') === 5);
+  t.true(myEval('((lambda (x) (* x x)) 2)')===4);
+  t.false(myEval('(> ((lambda (x) (* x x)) 1) 4 )'));
+  t.true(myEval('(if (> ((lambda (x) (* x x)) 1) 4 ) (5) (* 2 6)) ')===12);
+  t.true(myEval('(if (> ((lambda (x) (* x x)) 4) 4 ) (* 3 6) (* 2 6)) ')===18)
+});
