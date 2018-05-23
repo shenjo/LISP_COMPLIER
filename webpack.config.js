@@ -5,13 +5,12 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    'lisper': "./src/app.js"
-    // 'electron':"./src/electron.js"
+    'lisper': "./V2/index.js"
   },
-  devtool: 'inline-source-map',
   output: {
-    path: __dirname + '/dist',
-    filename: "[name].js"
+    library: "compile",
+    libraryTarget: "umd",
+    filename: "compile.js"
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

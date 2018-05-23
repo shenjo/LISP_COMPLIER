@@ -5,10 +5,16 @@
 ```bash
 $ npm i | yarn 
 
-$ npm run dev
+$ npm run dev | yarn run dev
 ```
 
-## 2. plan
+## 2. test
+
+```bash
+$ npm test | yarn test
+```
+
+## 3. plan
 
 currently only has a little function.
 
