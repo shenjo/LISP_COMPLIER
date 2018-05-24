@@ -41,6 +41,13 @@ test('章节1.1', t => {
   check('(abs 3)',3);
   check('(abs 0)',0);
   check('(abs -3)',3);
-
-
+  myEval('(define (sqrt-iter guess x) (if (good-enough? guess x) guess (sqrt-iter (improve guess x) x) ) )');
+  myEval('(define (improve guess x)  (average guess (/ x guess)) )');
+  myEval('(define (average x y) (/ (+ x y) 2) )');
+  myEval('(define (good-enough? guess x)  (<  (abs (- (square guess) x)) 0.001 )  ) ');
+  myEval('(define (sqrt x) ( sqrt-iter 1.0 x))');
+  check('(sqrt 9)',3.00009155413138);
+  check('(sqrt (+ 100 37))',11.704699917758145);
+  check('(sqrt (+ (sqrt 2) (sqrt 3)))',1.7739279023207892);
+  check('(square (sqrt 1000))',1000.000369924366);
 });

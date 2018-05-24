@@ -14,7 +14,7 @@ const checkErrorWraper = t => {
     }, Error);
     msg ? t.is(error.message, msg) : t.pass();
   }
-}
+};
 
 test('不合法的表达式测试', t => {
   const check = checkErrorWraper(t);
@@ -96,10 +96,10 @@ test('逻辑表达式测试', t => {
   const check = checkWraper(t);
   check('(and (+ 3 4) (> 3 5) (* 2 4))', false);
   check('(and (+ 3 4) (< 3 5) (* 2 4))', 8);
-  check('(and (+ 3 4) (< 3 5) (> 4 2))', true)
+  check('(and (+ 3 4) (< 3 5) (> 4 2))', true);
   check('(or (+ 3 4) (> 3 5) (* 2 4))', 7);
   check('(or (> 3 4) (< 3 5) (* 2 4))', true);
-  check('(or (> 3 4) (+ 3 5) (> 4 2))', 8)
+  check('(or (> 3 4) (+ 3 5) (> 4 2))', 8);
   check('(not (> 3 4))', true);
   check('(not (< 3 4))', false);
 });
