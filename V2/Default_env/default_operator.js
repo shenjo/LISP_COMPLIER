@@ -10,11 +10,14 @@ const add = (...arg) => {
 };
 
 const subtract = (...arg) => {
-  if (!arg || arg.length < 2) {
-    throw new Error('-必须还有至少两个参数');
+  if (!arg || arg.length < 0) {
+    throw new Error('-必须还有至少一个参数');
   }
   if (arg.some(isNaN)) {
     throw new Error('-的参数必须是数字类型');
+  }
+  if(arg.length === 1){
+    return 0 - arg[0];
   }
   return arg.reduce((previousValue, currentValue) => {
     return previousValue - currentValue;
@@ -101,6 +104,15 @@ const lessAndEqualsThen = (...args) => {
   return args[0] <= args[1];
 };
 
+const cond = ()=>{};
+
+const equals = (...args) => {
+  if (!args || args.length !== 2) {
+    throw new Error(`=必须是2个参数`);
+  }
+  return args[0] === args[1];
+};
+
 module.exports = {
-  add, subtract, multi, divide, lambda, define, myIf, greaterAndEqualsThen, greaterThen, lessAndEqualsThen, lessThen
+  add, subtract, multi, divide, lambda, define, myIf, greaterAndEqualsThen, greaterThen, lessAndEqualsThen, lessThen,cond,equals
 };

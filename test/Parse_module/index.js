@@ -39,7 +39,7 @@ test('convertWordToNode 单词转化为节点', t => {
   }
 
   let word = '\'abc';
-  test(convertWordToNode(word), ALL_CONSTANTS.STRING_TYPE, word);
+  test(convertWordToNode(word), ALL_CONSTANTS.STRING_TYPE, word.slice(1));
   word = 'abc';
   test(convertWordToNode(word), ALL_CONSTANTS.VARIABLE_TYPE, word);
   word = '123';

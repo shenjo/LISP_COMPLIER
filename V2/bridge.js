@@ -3,7 +3,7 @@ const outputEle = document.getElementById('output');
 
 function run() {
   try {
-    outputEle.innerHTML = compile(inputEle.innerText)
+    outputEle.innerHTML = compile.myEval(inputEle.innerText)
   } catch (e) {
     outputEle.innerHTML = e.message;
   } finally {

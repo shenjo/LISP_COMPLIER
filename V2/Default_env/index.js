@@ -6,7 +6,7 @@ class Env {
   }
 
   find(key) {
-    if(this.$scope[key]){
+    if(this.$scope.hasOwnProperty(key)){
       return this.$scope[key];
     }else if(this.$scope.father){
       return this.$scope.father.find(key);

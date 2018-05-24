@@ -1,7 +1,7 @@
 import test from 'ava'
 import {myEval,clearGlobalEnv} from '../V2'
 
-const checkWarper = t => {
+const checkWraper = t => {
   return (expression, expected) => {
     t.deepEqual(myEval(expression), expected)
   };
@@ -9,7 +9,7 @@ const checkWarper = t => {
 
 
 test('章节1.1', t => {
-  const check = checkWarper(t);
+  const check = checkWraper(t);
   clearGlobalEnv();
   check('486', 486);
   check('(+ 137 349)', 486);
@@ -36,4 +36,11 @@ test('章节1.1', t => {
   check('(sum-of-squares 3 4)',25);
   myEval('(define (f a ) (sum-of-squares (+ a 1) (* a 2)))');
   check('(f 5)',136);
+  check('(cond ((> 2 3) 5) ((> 23 3) 6) ((> 24 3) 7))',6);
+  myEval('(define (abs x) (cond ((> x 0) x) ((= x 0) 0) ((< x 0) (- x)) ))');
+  check('(abs 3)',3);
+  check('(abs 0)',0);
+  check('(abs -3)',3);
+
+
 });

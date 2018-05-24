@@ -41,6 +41,7 @@ const convertWordToNode = word => {
     type = RIGHT_BRACKETS_TYPE;
   } else if (word.startsWith(STRING_TYPE)) {
     type = STRING_TYPE;
+    word = word.slice(1);
   } else if (!isNaN(word)) {
     type = NUMBER_TYPE;
     word = Number(word);

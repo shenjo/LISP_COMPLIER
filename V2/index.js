@@ -26,6 +26,8 @@ function initDefaultEnv() {
   env.register('>=', operaters.greaterAndEqualsThen);
   env.register('<', operaters.lessThen);
   env.register('<=', operaters.lessAndEqualsThen);
+  env.register('=', operaters.equals);
+  env.register('cond', operaters.cond);
   return env;
 }
 

@@ -13,7 +13,7 @@ const isNumber = node => {
 };
 
 const isString = node => {
-  return node.getType() === ALL_CONSTANTS.STRING_TYPEl
+  return node.getType() === ALL_CONSTANTS.STRING_TYPE;
 };
 
 const isVariable = node => {
@@ -34,7 +34,11 @@ const isMyIfExpression = node => {
 
 const isCompareExpression = node => {
   return node && typeof node.getVal === 'function' && ['>','>=','<','<='].indexOf(node.getVal()) !== -1;
-}
+};
+
+const isCondition = node => {
+  return node && typeof node.getVal === 'function' && node.getVal() === ALL_CONSTANTS.CONDITION;
+};
 
 const checkOverFlow = (currentIndex, length, msg = 'unknown error') => {
   if (currentIndex >= length) {
@@ -53,5 +57,6 @@ module.exports = {
   isLambdaExpression,
   isDefineExpression,
   isMyIfExpression,
-  isCompareExpression
+  isCompareExpression,
+  isCondition
 };
