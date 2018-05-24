@@ -1,4 +1,5 @@
 const {MyFunction} = require('./MyFunction');
+const {evalSystem} = require('../Execute_module')
 
 const add = (...arg) => {
   if (!arg || arg.length < 2) {
@@ -113,6 +114,52 @@ const equals = (...args) => {
   return args[0] === args[1];
 };
 
+const and = (env,...args) => {
+  if (!args || args.length < 2) {
+    throw new Error(`and至少要个参数`);
+  }
+
+  let result = false;
+  for(let [index,cond] of args.entries()){
+    const val = evalSystem(cond,env);
+    if(!Boolean(val)){
+      break;
+    }
+    if(index === args.length-1){
+      result = val;
+    }
+  }
+  return result;
+};
+and.lazy = true;
+
+const or = (env,...args) => {
+  if (!args || args.length < 2) {
+    throw new Error(`or至少要个参数`);
+  }
+  let result = false;
+  for(let cond of args){
+    const val = evalSystem(cond,env);
+    if(Boolean(val)){
+      result = val;
+      break;
+    }
+  }
+  return result;
+};
+or.lazy = true;
+
+const not = (env,...args) => {
+  if (!args || args.length !== 1) {
+    throw new Error(`or接收一个参数`);
+  }
+  return !Boolean(evalSystem(args[0],env));
+};
+not.lazy = true;
+
+
+
+
 module.exports = {
-  add, subtract, multi, divide, lambda, define, myIf, greaterAndEqualsThen, greaterThen, lessAndEqualsThen, lessThen,cond,equals
+  add, subtract, multi, divide, lambda, define, myIf, greaterAndEqualsThen, greaterThen, lessAndEqualsThen, lessThen,cond,equals,and,or,not
 };

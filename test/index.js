@@ -81,13 +81,25 @@ test('if表达式测试', t => {
   t.true(myEval('(if (> ((lambda (x) (* x x)) 4) 4 ) (* 3 6) (* 2 6)) ') === 18)
 });
 
-test('cond表达式测试',t=>{
-  const check = checkWraper(t),checkError = checkErrorWraper(t);
-  checkError('(cond 5 ())','Cond 语句有误');
-  checkError('(cond (() () ()))','Cond 语句有误');
-  checkError('(cond ((> 2 2) 1) (else 5) ((> 3 2) 5)  )','Cond语句的else只能出现在最后');
-  check('(cond ((> 3 2) \'true) ((> 2 3) \'false))','true');
-  check('(cond ((> 2 3) \'true) ((> 3 2) \'false))','false');
-  check('(cond ((> 2 3) \'true) ((> 1 2) \'false))',undefined);
-  check('(cond ((> -1 0) 1) (else 0))',0);
+test('cond表达式测试', t => {
+  const check = checkWraper(t), checkError = checkErrorWraper(t);
+  checkError('(cond 5 ())', 'Cond 语句有误');
+  checkError('(cond (() () ()))', 'Cond 语句有误');
+  checkError('(cond ((> 2 2) 1) (else 5) ((> 3 2) 5)  )', 'Cond语句的else只能出现在最后');
+  check('(cond ((> 3 2) \'true) ((> 2 3) \'false))', 'true');
+  check('(cond ((> 2 3) \'true) ((> 3 2) \'false))', 'false');
+  check('(cond ((> 2 3) \'true) ((> 1 2) \'false))', undefined);
+  check('(cond ((> -1 0) 1) (else 0))', 0);
+});
+
+test('逻辑表达式测试', t => {
+  const check = checkWraper(t);
+  check('(and (+ 3 4) (> 3 5) (* 2 4))', false);
+  check('(and (+ 3 4) (< 3 5) (* 2 4))', 8);
+  check('(and (+ 3 4) (< 3 5) (> 4 2))', true)
+  check('(or (+ 3 4) (> 3 5) (* 2 4))', 7);
+  check('(or (> 3 4) (< 3 5) (* 2 4))', true);
+  check('(or (> 3 4) (+ 3 5) (> 4 2))', 8)
+  check('(not (> 3 4))', true);
+  check('(not (< 3 4))', false);
 });

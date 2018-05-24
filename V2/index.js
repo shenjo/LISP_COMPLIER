@@ -28,6 +28,9 @@ function initDefaultEnv() {
   env.register('<=', operaters.lessAndEqualsThen);
   env.register('=', operaters.equals);
   env.register('cond', operaters.cond);
+  env.register('and', operaters.and);
+  env.register('or', operaters.or);
+  env.register('not', operaters.not);
   return env;
 }
 
@@ -49,5 +52,7 @@ function myEval(input) {
   });
   return result[result.length - 1];
 }
+
+myEval('(or (+ 3 4) (> 3 5) (* 2 4))')
 
 module.exports = {myEval,clearGlobalEnv};

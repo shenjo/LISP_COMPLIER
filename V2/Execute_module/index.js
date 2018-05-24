@@ -60,6 +60,8 @@ function executeGrammarTree(grammarTree, env) {
     } else if (operator instanceof MyFunction) {
       let funcArgs = grammarTree.children.slice(1).map(item => evalSystem(item, env));
       return evalMyFunction(operator, funcArgs, env);
+    }else if(operator && operator.lazy){
+      return operator.call(null,env,...grammarTree.children.slice(1))
     } else {
       let funcArgs = grammarTree.children.slice(1).map(item => evalSystem(item, env));
       return operator.apply(null, funcArgs);
@@ -86,6 +88,7 @@ function evalMyFunction(fn, binds, env) {
 }
 
 module.exports = {
-  executeGrammarTree
+  executeGrammarTree,
+  evalSystem
 };
 
