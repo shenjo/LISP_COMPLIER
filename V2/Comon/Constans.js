@@ -5,7 +5,8 @@ const ALL_CONSTANTS = {
   RIGHT_BRACKETS_TYPE: 'right_brackets',
   STRING_TYPE:'\'',
   NUMBER_TYPE:'number_type',
-  VARIABLE_TYPE:'variable_type'
+  VARIABLE_TYPE:'variable_type',
+  LAMBDA:'lambda'
 };
 
 const curry = (fn) => {

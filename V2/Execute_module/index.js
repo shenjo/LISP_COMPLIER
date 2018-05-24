@@ -2,6 +2,7 @@ const {Node, Tree} = require('../Comon/dataStructure');
 const {Env} = require('../Default_env');
 const {isNumber, isString, isVariable, isLambdaExpression, isDefineExpression, isMyIfExpression, isCompareExpression} = require('../Comon/util');
 const {MyFunction} = require('../Default_env/MyFunction');
+const evalDefine = require('./evalDefineExpression');
 
 function evalSystem(expression, env) {
   if (expression instanceof Tree) {
@@ -30,7 +31,8 @@ function executeGrammarTree(grammarTree, env) {
     if (isLambdaExpression(grammarTree.children[0])) {
       return operator.call(null, [grammarTree.children[1], grammarTree.children[2]], env)
     } else if (isDefineExpression(grammarTree.children[0])) {
-      return operator.call(null, [grammarTree.children[1].getVal(), evalSystem(grammarTree.children[2], env)], env);
+      const {name,body} = evalDefine(grammarTree);
+      return operator.call(null, [name, evalSystem(body, env)], env);
     } else if (isMyIfExpression(grammarTree.children[0])) {
       let condition = evalSystem(grammarTree.children[1], env);
       let trueExpress = grammarTree.children[2];

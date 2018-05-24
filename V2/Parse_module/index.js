@@ -95,7 +95,6 @@ const convertNodesToTree = nodes => {
 
 const convertInputToGrammarTree = compose(convertNodesToTree, convertInputToNodes);
 
-// console.log(convertInputToGrammarTree(' (  +  1  2  (+  2  3 )  )  (+ 1 2) () )'))
 exports.preHandleInput = preHandleInput;
 exports.parseToWords = parseToWords;
 exports.specialHandleWord = specialHandleWord;

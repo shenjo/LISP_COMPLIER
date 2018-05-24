@@ -21,7 +21,7 @@ const isVariable = node => {
 };
 
 const isLambdaExpression = node => {
-  return node && typeof node.getVal === 'function' && node.getVal() === 'lambda';
+  return node && typeof node.getVal === 'function' && node.getVal() === ALL_CONSTANTS.LAMBDA;
 };
 
 const isDefineExpression = node => {

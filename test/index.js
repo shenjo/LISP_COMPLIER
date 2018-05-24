@@ -1,5 +1,5 @@
 import test from 'ava'
-import myEval from '../V2'
+import {myEval} from '../V2'
 
 test('不合法的表达式测试', t => {
   const check = (expression, msg) => {
