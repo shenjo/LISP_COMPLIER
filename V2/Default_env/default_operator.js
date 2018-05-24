@@ -53,7 +53,7 @@ const lambda = args => {
   if (!args || args.length < 2) {
     throw new Error('lambda必须还有至少两个参数');
   }
-  return new MyFunction(args[0], args[1]);
+  return new MyFunction(args[0], args.slice(1));
 };
 
 const define = (args, env) => {

@@ -9,7 +9,7 @@ module.exports = grammarTree => {
     let params = new Tree();
     defineWhat.children.slice(1).forEach(child => params.append(child));
     body.append(params);
-    body.append(grammarTree.children[2]);
+    grammarTree.children.slice(2).forEach(child=>body.append(child));
   } else {
     name = defineWhat.getVal();
     body = grammarTree.children[2];

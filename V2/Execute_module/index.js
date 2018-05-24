@@ -29,7 +29,7 @@ function executeGrammarTree(grammarTree, env) {
       }
     }
     if (isLambdaExpression(grammarTree.children[0])) {
-      return operator.call(null, [grammarTree.children[1], grammarTree.children[2]], env)
+      return operator.call(null, [grammarTree.children[1], ...grammarTree.children.slice(2)], env)
     } else if (isDefineExpression(grammarTree.children[0])) {
       const {name, body} = evalDefine(grammarTree);
       return operator.call(null, [name, evalSystem(body, env)], env);
@@ -80,7 +80,12 @@ function evalMyFunction(fn, binds, env) {
         fnEnv.register(fn.params.children[index].getVal(), val);
       }
     });
-    return executeGrammarTree(fn.body, fnEnv);
+    for(let [index,statement] of fn.body.entries()){
+      const result= executeGrammarTree(statement, fnEnv);
+      if(index === fn.body.length-1){
+        return result;
+      }
+    }
 
   } else {
     throw new Error('不能对一个非自定义函数求值');
